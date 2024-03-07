@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             this.lblError = new System.Windows.Forms.Label();
-            this.txtId = new System.Windows.Forms.TextBox();
-            this.btnUpdate = new System.Windows.Forms.Button();
+            this.lblIdInvisible = new System.Windows.Forms.TextBox();
             this.btnDeleteBook = new System.Windows.Forms.Button();
             this.lstBooks = new System.Windows.Forms.ListBox();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -44,6 +43,10 @@
             this.txtAuthor = new System.Windows.Forms.TextBox();
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.cmbCountry = new System.Windows.Forms.ComboBox();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.lblCount = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblError
@@ -52,44 +55,37 @@
             this.lblError.BackColor = System.Drawing.Color.White;
             this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblError.ForeColor = System.Drawing.Color.Firebrick;
-            this.lblError.Location = new System.Drawing.Point(364, 31);
+            this.lblError.Location = new System.Drawing.Point(698, 19);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(86, 31);
             this.lblError.TabIndex = 36;
             this.lblError.Text = "label1";
             this.lblError.Visible = false;
             // 
-            // txtId
+            // lblIdInvisible
             // 
-            this.txtId.Location = new System.Drawing.Point(147, 31);
-            this.txtId.Name = "txtId";
-            this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(100, 20);
-            this.txtId.TabIndex = 35;
-            this.txtId.Visible = false;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(147, 396);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(150, 23);
-            this.btnUpdate.TabIndex = 34;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.lblIdInvisible.Location = new System.Drawing.Point(147, 31);
+            this.lblIdInvisible.Name = "lblIdInvisible";
+            this.lblIdInvisible.ReadOnly = true;
+            this.lblIdInvisible.Size = new System.Drawing.Size(100, 20);
+            this.lblIdInvisible.TabIndex = 35;
+            this.lblIdInvisible.Visible = false;
             // 
             // btnDeleteBook
             // 
-            this.btnDeleteBook.Location = new System.Drawing.Point(364, 397);
+            this.btnDeleteBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteBook.Location = new System.Drawing.Point(698, 393);
             this.btnDeleteBook.Name = "btnDeleteBook";
             this.btnDeleteBook.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteBook.TabIndex = 33;
             this.btnDeleteBook.Text = "Delete Selected";
             this.btnDeleteBook.UseVisualStyleBackColor = true;
+            this.btnDeleteBook.Click += new System.EventHandler(this.btnDeleteBook_Click);
             // 
             // lstBooks
             // 
             this.lstBooks.FormattingEnabled = true;
-            this.lstBooks.Location = new System.Drawing.Point(364, 67);
+            this.lstBooks.Location = new System.Drawing.Point(698, 55);
             this.lstBooks.Name = "lstBooks";
             this.lstBooks.Size = new System.Drawing.Size(405, 303);
             this.lstBooks.TabIndex = 32;
@@ -97,11 +93,12 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(147, 354);
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Location = new System.Drawing.Point(147, 335);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(150, 23);
             this.btnAdd.TabIndex = 31;
-            this.btnAdd.Text = "Insert / update book";
+            this.btnAdd.Text = "Insert  book";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -186,14 +183,58 @@
             this.cmbCountry.Size = new System.Drawing.Size(150, 21);
             this.cmbCountry.TabIndex = 21;
             // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Location = new System.Drawing.Point(147, 397);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(150, 23);
+            this.btnClear.TabIndex = 37;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // lblCount
+            // 
+            this.lblCount.AutoSize = true;
+            this.lblCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCount.Location = new System.Drawing.Point(542, 393);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(0, 25);
+            this.lblCount.TabIndex = 38;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Location = new System.Drawing.Point(147, 368);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(150, 23);
+            this.btnUpdate.TabIndex = 39;
+            this.btnUpdate.Text = "Update Book";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click_1);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(479, 67);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 40;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lblError);
-            this.Controls.Add(this.txtId);
+            this.ClientSize = new System.Drawing.Size(1205, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.lblCount);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.lblError);
+            this.Controls.Add(this.lblIdInvisible);
             this.Controls.Add(this.btnDeleteBook);
             this.Controls.Add(this.lstBooks);
             this.Controls.Add(this.btnAdd);
@@ -218,8 +259,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblError;
-        private System.Windows.Forms.TextBox txtId;
-        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.TextBox lblIdInvisible;
         private System.Windows.Forms.Button btnDeleteBook;
         private System.Windows.Forms.ListBox lstBooks;
         private System.Windows.Forms.Button btnAdd;
@@ -233,6 +273,10 @@
         private System.Windows.Forms.TextBox txtAuthor;
         private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.ComboBox cmbCountry;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label lblCount;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button button1;
     }
 }
 

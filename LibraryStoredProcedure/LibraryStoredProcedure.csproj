@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connections\Helper.cs" />
+    <Compile Include="Enums\StoredProcs.cs" />
+    <Compile Include="GenericRepo.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\BookRepo.cs" />
     <Compile Include="Models\Country.cs" />

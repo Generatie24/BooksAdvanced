@@ -12,12 +12,12 @@ namespace LibraryStoredProcedure.Models
         public string Title { get; set; }
         public string Author { get; set; }
         public decimal Price { get; set; }
-        public string Desription { get; set; }
+        public string Description { get; set; }
         public int CountryId { get; set; }
 
         public override string ToString()
         {
-            return $"{Title} {Author} {Price} {CountryId}";
+            return $"{Title} {Author} {Price} {CountryId} {Description}";
         }
     }
 }

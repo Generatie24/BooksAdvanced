@@ -21,17 +21,18 @@ namespace BooksAdvanced
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            InsertOrUpdate();
+            Insert();
 
         }
 
-        private void InsertOrUpdate()
+        private void Insert()
         {
+
             if ((int)cmbCountry.SelectedValue < 0)
             {
-                MessageBox.Show("You should select a country");
+                MessageBox.Show("You should select country");
                 lblError.Visible = true;
-                lblError.Text = "You should select a country";
+                lblError.Text = "You should select country";
             }
             else
             {
@@ -40,11 +41,13 @@ namespace BooksAdvanced
                 book.Title = txtTitle.Text;
                 book.Author = txtAuthor.Text;
                 book.Price = decimal.Parse(txtPrice.Text);
-                book.Desription = txtDescription.Text;
+                book.Description = txtDescription.Text;
 
                 BookRepo bookRepo = new BookRepo();
                 bookRepo.AddBook(book);
                 lblError.Visible = false;
+                FillListBoxWithBooks();
+
             }
         }
 
@@ -81,6 +84,8 @@ namespace BooksAdvanced
             {
                 lstBooks.Items.Add(item);
             }
+            lblCount.Text = "Number of records : " + lstBooks.Items.Count.ToString();
+
         }
 
         private void lstBooks_SelectedIndexChanged(object sender, EventArgs e)
@@ -94,10 +99,80 @@ namespace BooksAdvanced
                 txtTitle.Text = book.Title;
                 txtAuthor.Text = book.Author;
                 txtPrice.Text = book.Price.ToString();
-                txtDescription.Text = book.Desription;
-                MessageBox.Show(book.Id.ToString());
+                txtDescription.Text = book.Description;
+                lblIdInvisible.Text = book.Id.ToString();
 
             }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            Book book = new Book();
+            book.CountryId = (int)cmbCountry.SelectedValue;
+            book.Title = txtTitle.Text;
+            book.Author = txtAuthor.Text;
+            book.Price = decimal.Parse(txtPrice.Text);
+            book.Description = txtDescription.Text;
+
+            BookRepo bookRepo = new BookRepo();
+            bookRepo.UpdateBook(book);
+            lblError.Visible = false;
+            FillListBoxWithBooks();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+
+        }
+
+        private void ClearFields()
+        {
+            cmbCountry.SelectedIndex = 0;
+            lblIdInvisible.Text = "";
+            txtTitle.Text = "";
+            txtAuthor.Text = "";
+            txtPrice.Text = "";
+            txtDescription.Text = "";
+        }
+
+        private void btnDeleteBook_Click(object sender, EventArgs e)
+        {
+            Book book = new Book();
+            book = (Book)lstBooks.SelectedItem;
+            if (book != null)
+            {
+                BookRepo bookRepo = new BookRepo();
+                bookRepo.DeleteBook(book);
+            }
+            ClearFields();
+            FillListBoxWithBooks();
+        }
+
+        private void btnUpdate_Click_1(object sender, EventArgs e)
+        {
+            Book book = new Book();
+            book = (Book)lstBooks.SelectedItem;
+            book.CountryId = (int)cmbCountry.SelectedValue;
+            book.Title = txtTitle.Text;
+            book.Author = txtAuthor.Text;
+            book.Price = decimal.Parse(txtPrice.Text);
+            book.Description = txtDescription.Text;
+
+            if (book != null)
+            {
+                book.Id = int.Parse(lblIdInvisible.Text);
+                BookRepo bookRepo = new BookRepo();
+                bookRepo.UpdateBook(book);
+            }
+            FillListBoxWithBooks();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+            Form2 form2 = new Form2();
+            form2.ShowDialog();  
         }
     }
 }
